@@ -17,6 +17,7 @@ def download_videos(video_dir: Path,
     for idx, url in enumerate(video_links):
         video_id = url.split('https://www.youtube.com/watch?v=')[1]
         if video_id not in existent_ids or refresh is True:
+            print(f"Downloading video {video_id}")
             video_name = f"video-{video_id}"
             youtube = pytube.YouTube(url)
             video = youtube.streams.first()
