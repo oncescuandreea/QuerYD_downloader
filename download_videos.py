@@ -7,7 +7,7 @@ import pytube
 
 def download_videos(video_dir: Path,
                     refresh: bool):
-    with open('relevant-video-links-test.txt', 'r') as f:
+    with open('relevant-video-links.txt', 'r') as f:
         video_links = f.read().splitlines()
     os.makedirs(video_dir, exist_ok=True)
     existent_videos = os.listdir(video_dir)
