@@ -9,6 +9,7 @@ def download_videos(video_dir: Path,
                     refresh: bool):
     with open('relevant-video-links-test.txt', 'r') as f:
         video_links = f.read().splitlines()
+    os.makedirs(video_dir, exist_ok=True)
     existent_videos = os.listdir(video_dir)
     existent_ids = [video.split('video-')[1].split('.')[0] for video in existent_videos]
     total_number_videos = len(video_links)
