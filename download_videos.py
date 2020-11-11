@@ -1,11 +1,12 @@
 import argparse
+import logging
 import os
+from datetime import datetime
 from pathlib import Path
 
 import pytube
 from pytube.exceptions import RegexMatchError
-import logging
-from datetime import datetime
+
 
 def download_one_video(tries: int,
                        url: str,
@@ -43,6 +44,7 @@ def download_one_video(tries: int,
             no_tries = tries + 1
 
 def download_videos(video_dir: Path,
+                    txt_file: Path,
                     tries: int,
                     refresh: bool,
                     logging):
@@ -54,7 +56,7 @@ def download_videos(video_dir: Path,
         refresh: flag to restart the downloading process
         logging: logging module for saving information about progress of script
     """
-    with open('relevant-video-links.txt', 'r') as f:
+    with open(txt_file, 'r') as f:
         video_links = f.read().splitlines()
     os.makedirs(video_dir, exist_ok=True)
     existent_videos = os.listdir(video_dir)
@@ -87,11 +89,17 @@ def main():
         "--refresh",
         action="store_true"
     )
+    parser.add_argument(
+        "--txt_file",
+        type=Path,
+        default='relevant-video-links.txt'
+    )
     args = parser.parse_args()
     os.makedirs('logs', exist_ok=True)
     logging.basicConfig(filename=f"logs/{datetime.now().strftime(r'%m%d_%H%M%S')}.log",
                         level=logging.INFO)
     logging.getLogger().addHandler(logging.StreamHandler())
-    download_videos(args.video_dir, args.tries, args.refresh, logging)
+    download_videos(args.video_dir, args.txt_file,
+                    args.tries, args.refresh, logging)
 if __name__ == "__main__":
     main()
