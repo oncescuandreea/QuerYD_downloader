@@ -37,6 +37,10 @@ def download_one_video(tries: int,
                 logging.info(f"Video {video_id} unavailable")
             no_tries += 1
             continue
+        except KeyError:
+            "Windows error"
+            logging.info(f"Video {video_id} unavailable")
+            no_tries = tries + 1
 
 def download_videos(video_dir: Path,
                     tries: int,
