@@ -26,3 +26,12 @@ To re-download all files use the --refresh flag. Eg:
 ```
 python download_videos.py --txt_file relevant-video-links.txt --refresh
 ```
+
+**Downloading json metadata** \
+To download the .json file containing information about the described videos run:
+```
+mkdir describe-api-results
+cd describe-api-results
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-eperts/data/QuerYD/json_metadata.zip
+unzip json_metadata.zip
+```
