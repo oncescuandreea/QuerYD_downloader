@@ -7,6 +7,10 @@ This is a tool to allow for easy download of the videos forming the QuerYD datas
 * pytube
 * pathlib
 * logging
+* multiprocessing
+* requests
+* tqdm
+* json
 
 **Downloading videos** \
 To test the download videos script for the QuerYD dataset simply run:
