@@ -11,6 +11,7 @@ This is a tool to allow for easy download of the videos forming the QuerYD datas
 * requests
 * tqdm
 * json
+* zsvision
 
 **Downloading videos** \
 To test the download videos script for the QuerYD dataset simply run:
