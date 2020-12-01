@@ -80,29 +80,6 @@ def download_videos(video_dir: Path,
         if idx % 10 == 0 and idx != 0:
             logging.info(f"Reached {idx}/{total_number_videos}")
 
-def get_annotations(txt_file: Path,
-                    refresh: bool,
-                    api_describe_endpoint: str,
-                    data_dir: Path,
-                    logging: logging.basicConfig):
-    annotation_folder = data_dir / 'describe-api-results'
-    annotation_folder.mkdir(parents=True, exist_ok=True)
-    with open(txt_file, 'r') as f:
-        video_links = f.read().splitlines()
-    no_video_links = len(video_links)
-    for idx, url in enumerate(video_links):
-        video_id = url.split('https://www.youtube.com/watch?v=')[1]
-        dest_path = annotation_folder / f"assets-{video_id}.json"
-        if dest_path.exists() and not refresh:
-            logging.info(f"Found existing result at {dest_path}, skipping...")
-            continue
-        full_url = f"{api_describe_endpoint}/{video_id}"
-        resp = requests.get(full_url, verify=False)
-        json_data = json.loads(resp.text)
-        logging.info(f"{idx}/{no_video_links} fetched resources for {video_id}, writing to {dest_path}")
-        with open(dest_path, "w") as f:
-            json.dump(json_data, f, indent=4, sort_keys=False)
-
 def download_wavs(txt_file: Path,
                   refresh: bool,
                   api_wav_endpoint: str,
@@ -221,8 +198,8 @@ def main():
         "--api_wav_endpoint",
         default="https://api.youdescribe.org/audio-descriptions-files",
     )
-    parser.add_argument("--task", default="annotations",
-                        choices=["annotations", "download_videos", "download_wavs"])
+    parser.add_argument("--task", default="download_videos",
+                        choices=["download_videos", "download_wavs"])
     args = parser.parse_args()
     os.makedirs('logs', exist_ok=True)
     logging.basicConfig(filename=f"logs/{datetime.now().strftime(r'%m%d_%H%M%S')}.log",
@@ -231,12 +208,6 @@ def main():
     if args.task in "download_videos":
         download_videos(args.video_dir, args.txt_file,
                         args.tries, args.refresh, logging)
-    elif args.task in "annotations":
-        get_annotations(args.txt_file,
-                        args.refresh,
-                        args.api_describe_endpoint,
-                        args.data_dir,
-                        logging)
     elif args.task in "download_wavs":
         download_wavs(args.txt_file,
                       args.refresh,
