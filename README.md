@@ -35,7 +35,8 @@ python download_queryd.py --txt_file relevant-video-links.txt --refresh --task d
 **Downloading json metadata** \
 To download the .json file containing information about the described videos run:
 ```
-python download_queryd.py --txt_file relevant-video-links.txt --task annotations
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/json_metadata.zip
+unzip json_metadata.zip
 ```
 
 **Downloading audio description files** \
