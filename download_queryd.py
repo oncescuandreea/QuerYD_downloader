@@ -207,10 +207,6 @@ def main():
     parser.add_argument("--legacy_only", action="store_true")
     parser.add_argument("--processes", type=int, default=1)
     parser.add_argument(
-        "--api_describe_endpoint",
-        type=str,
-        default="https://api.youdescribe.org/v1/videos")
-    parser.add_argument(
         "--api_wav_endpoint",
         default="https://api.youdescribe.org/audio-descriptions-files",
     )
