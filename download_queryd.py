@@ -19,8 +19,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 def download_one_video(tries: int,
                        url: str,
                        video_dir: Path,
-                       video_id: str,
-                       logging: logging.basicConfig):
+                       video_id: str):
     """
     Try downloading one video repeatedly.
     Inputs:
@@ -34,7 +33,7 @@ def download_one_video(tries: int,
     no_tries = 0
     while no_tries <= tries:
         try:
-            logging.info(f"Downloading video {video_id}")
+            print(f"Downloading video {video_id}")
             video_name = f"video-{video_id}"
             youtube = pytube.YouTube(url)
             video = youtube.streams.first()
@@ -43,18 +42,19 @@ def download_one_video(tries: int,
             no_tries = tries + 1
         except RegexMatchError:
             if no_tries == tries:
-                logging.info(f"Video {video_id} unavailable")
+                print(f"Video {video_id} unavailable")
             no_tries += 1
             continue
         except KeyError:
             "Windows error"
-            logging.info(f"Video {video_id} unavailable")
+            print(f"Video {video_id} unavailable")
             no_tries = tries + 1
 
 def download_videos(video_dir: Path,
                     txt_file: Path,
                     tries: int,
                     refresh: bool,
+                    processes: int,
                     logging: logging.basicConfig):
     """File goes through list of existent videos in QuerYD dataset and
     attempts to download them. Videos are saved with the name "video-{video_id}".
@@ -71,14 +71,30 @@ def download_videos(video_dir: Path,
     existent_ids = [video.split('video-')[1].split('.')[0] for video in existent_videos]
     total_number_videos = len(video_links)
     logging.info("Downloading videos")
+    kwarg_list = []
     for idx, url in enumerate(video_links):
         video_id = url.split('https://www.youtube.com/watch?v=')[1]
         if video_id not in existent_ids or refresh is True:
-            download_one_video(tries, url, video_dir, video_id, logging)                 
+            kwarg_list.append({
+            "tries": tries,
+            "url": url,
+            "video_dir": video_dir,
+            "video_id": video_id,
+            })               
         else:
-            logging.info(f"Already downloaded video {video_id}")
-        if idx % 10 == 0 and idx != 0:
-            logging.info(f"Reached {idx}/{total_number_videos}")
+            logging.info(f"Already downloaded video {video_id}")     
+
+    pool_func = download_one_video
+    if processes > 1:
+        # The definition of the pool func must precede the creation of the pool
+        # to ensure its pickleable.  We force the definition to occur by reassigning
+        # the function.
+        with mp.Pool(processes=processes) as pool:
+            starmap_with_kwargs(pool=pool, func=pool_func, kwargs_iter=kwarg_list)
+    else:
+        for idx, kwarg in enumerate(kwarg_list):
+            print(f"{idx}/{len(kwarg_list)} processing kwargs ")
+            pool_func(**kwarg)
 
 def download_wavs(txt_file: Path,
                   refresh: bool,
@@ -207,7 +223,8 @@ def main():
     logging.getLogger().addHandler(logging.StreamHandler())
     if args.task in "download_videos":
         download_videos(args.video_dir, args.txt_file,
-                        args.tries, args.refresh, logging)
+                        args.tries, args.refresh,
+                        args.processes, logging)
     elif args.task in "download_wavs":
         download_wavs(args.txt_file,
                       args.refresh,
