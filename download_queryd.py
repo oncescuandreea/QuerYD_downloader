@@ -40,6 +40,7 @@ def download_one_video(tries: int,
             no_tries += 1
             video.download(video_dir, filename=video_name)
             no_tries = tries + 1
+            print(f"Finished downloading video {video_id}")
         except RegexMatchError:
             if no_tries == tries:
                 print(f"Video {video_id} unavailable")
