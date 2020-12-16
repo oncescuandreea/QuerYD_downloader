@@ -4,7 +4,7 @@ This is a tool to allow for easy download of the videos forming the QuerYD datas
 
 **Installing necessary libraries:**
 * argparse
-* pytube (python -m pip install git+https://github.com/nficano/pytube)
+* pytube ```python -m pip install git+https://github.com/nficano/pytube```
 * pathlib
 * logging
 * multiprocessing
