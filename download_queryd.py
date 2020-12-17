@@ -9,7 +9,7 @@ from pathlib import Path
 import pytube
 import requests
 import tqdm
-from pytube.exceptions import RegexMatchError
+from pytube.exceptions import RegexMatchError, VideoRegionBlocked, VideoUnavailable
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from zsvision.zs_multiproc import starmap_with_kwargs
 
@@ -19,7 +19,8 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 def download_one_video(tries: int,
                        url: str,
                        video_dir: Path,
-                       video_id: str):
+                       video_id: str,
+                       failed_folder: Path):
     """
     Try downloading one video repeatedly.
     Inputs:
@@ -44,12 +45,26 @@ def download_one_video(tries: int,
         except RegexMatchError:
             if no_tries == tries:
                 print(f"Video {video_id} unavailable")
+                with open(failed_folder / f'{video_id}_region.txt', 'w') as f:
+                    pass
             no_tries += 1
             continue
         except KeyError:
-            "Windows error"
+            #Windows error
             print(f"Video {video_id} unavailable")
             no_tries = tries + 1
+            with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
+                pass
+        except VideoRegionBlocked:
+            print(f"Video {video_id} unavailable in your region")
+            with open(failed_folder / f'{video_id}_region.txt', 'w') as f:
+                pass
+            break
+        except VideoUnavailable:
+            print(f"Video {video_id} unavailable")
+            with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
+                pass
+            break
 
 def download_videos(video_dir: Path,
                     txt_file: Path,
@@ -68,6 +83,8 @@ def download_videos(video_dir: Path,
     with open(txt_file, 'r') as f:
         video_links = f.read().splitlines()
     os.makedirs(video_dir, exist_ok=True)
+    failed_folder = 'failed_folder'
+    os.makedirs(failed_folder, exist_ok=True)
     existent_videos = os.listdir(video_dir)
     existent_ids = [video.split('video-')[1].split('.')[0] for video in existent_videos]
     total_number_videos = len(video_links)
@@ -81,6 +98,7 @@ def download_videos(video_dir: Path,
             "url": url,
             "video_dir": video_dir,
             "video_id": video_id,
+            "failed_folder": Path(failed_folder),
             })               
         else:
             logging.info(f"Already downloaded video {video_id}")     
