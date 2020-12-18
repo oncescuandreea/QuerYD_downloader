@@ -9,7 +9,7 @@ from pathlib import Path
 import pytube
 import requests
 import tqdm
-from pytube.exceptions import RegexMatchError, VideoRegionBlocked, VideoUnavailable
+from pytube.exceptions import RegexMatchError, VideoRegionBlocked, VideoUnavailable, VideoPrivate
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from zsvision.zs_multiproc import starmap_with_kwargs
 
@@ -63,6 +63,11 @@ def download_one_video(tries: int,
         except VideoUnavailable:
             print(f"Video {video_id} unavailable")
             with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
+                pass
+            break
+        except VideoPrivate:
+            print(f"Video {video_id} private")
+            with open(failed_folder / f'{video_id}_private.txt', 'w') as f:
                 pass
             break
 
