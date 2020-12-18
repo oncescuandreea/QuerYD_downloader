@@ -49,3 +49,14 @@ To use more processes add the --processes flag with the number of CPUs available
 ```
 python download_queryd.py --txt_file relevant-video-links.txt --task download_wavs --processes 2
 ```
+
+**Downloading video features, descriptions and train/val/test splits**\
+To download QuerYD data:
+```
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYD-experts.tar.gz
+```
+To download QuerYDSegments data (localised clips and their descriptions):
+```
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYDSegments-experts.tar.gz
+```
+More info and scripts used can be found at https://github.com/albanie/collaborative-experts
