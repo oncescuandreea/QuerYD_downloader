@@ -50,6 +50,20 @@ To use more processes add the --processes flag with the number of CPUs available
 python download_queryd.py --txt_file relevant-video-links.txt --task download_wavs --processes 2
 ```
 
+**Downloading transcribed descriptions and corresponding time-stamps**\
+The transcribed version of the audio descriptions can be downloaded as a pickle file by accessing the following link:
+```
+http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/raw_captions_combined_filtered.pkl
+```
+The corresponding time-stamps in the same order are provided in this pickle file:
+```
+http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/times_captions_combined_filtered.pkl
+```
+The confidence of the transcriptions in the same order as transcriptions are found here:
+```
+http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/confidence_captions_combined_filtered.pkl
+```
+
 **Downloading video features, descriptions and train/val/test splits**\
 To download QuerYD data:
 ```
