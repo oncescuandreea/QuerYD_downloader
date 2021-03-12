@@ -73,5 +73,37 @@ To download QuerYDSegments data (localised clips and their descriptions):
 ```
 wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYDSegments-experts.tar.gz
 ```
-To 
+
 More info and scripts used can be found at https://github.com/albanie/collaborative-experts#queryd and training and test steps can be followed from https://github.com/albanie/collaborative-experts#evaluating-a-pretrained-model where MSVD should be replaced by QuerYD or QuerYDSegments. Model names should be taken from retrieval results tables at https://github.com/albanie/collaborative-experts#queryd or https://github.com/albanie/collaborative-experts#querydsegments .
+
+### References
+[1] If you find this code useful, please consider citing:
+```
+@misc{oncescu2021queryd,
+      title={QuerYD: A video dataset with high-quality text and audio narrations}, 
+      author={Andreea-Maria Oncescu and João F. Henriques and Yang Liu and Andrew Zisserman and Samuel Albanie},
+      year={2021},
+      eprint={2011.11071},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
+
+[2] If you find this code useful or use the extracted features, please consider citing:
+
+```
+@inproceedings{Liu2019a,
+  author    = {Liu, Y. and Albanie, S. and Nagrani, A. and Zisserman, A.},
+  booktitle = {arXiv preprint arxiv:1907.13487},
+  title     = {Use What You Have: Video retrieval using representations from collaborative experts},
+  date      = {2019},
+}
+```
+
+
+
+
+### Acknowledgements
+
+This work is supported by the EP-SRC (VisualAI EP/T028572/1 and DTA Studentship), and theRoyal Academy of Engineering (DFR05420). We are gratefulto Sophia Koepke for her helpful comments and suggestions.
+
