@@ -35,7 +35,7 @@ python download_queryd.py --txt_file relevant-video-links.txt --refresh --task d
 **Downloading json metadata** \
 To download the .json file containing information about the described videos run:
 ```
-wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/json_metadata.zip
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/json_metadata-{version either v1 or v2}.zip
 unzip json_metadata.zip
 ```
 
@@ -105,7 +105,7 @@ More info and scripts used can be found at https://github.com/albanie/collaborat
 
 ### Acknowledgements
 
-This work is supported by the EP-SRC (VisualAI EP/T028572/1 and DTA Studentship), and theRoyal Academy of Engineering (DFR05420). We are gratefulto Sophia Koepke for her helpful comments and suggestions.
+This work is supported by the EP-SRC (VisualAI EP/T028572/1 and DTA Studentship), and the Royal Academy of Engineering (DFR05420). We are gratefulto Sophia Koepke for her helpful comments and suggestions.
 
 
 ### 2nd Version of QuerYD retrieval results:
