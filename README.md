@@ -55,15 +55,15 @@ python download_queryd.py --txt_file relevant-video-links-{version either v1 or 
 **Downloading transcribed descriptions and corresponding time-stamps**\
 The transcribed version of the audio descriptions can be downloaded as a pickle file by accessing the following link:
 ```
-http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/raw_captions_combined_filtered.pkl
+http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/raw_captions_combined_filtered-{version either v1 or v2}.pkl
 ```
 The corresponding time-stamps in the same order are provided in this pickle file:
 ```
-http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/times_captions_combined_filtered.pkl
+http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/times_captions_combined_filtered-{version either v1 or v2}.pkl
 ```
 The confidence of the transcriptions in the same order as transcriptions are found here:
 ```
-http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/confidence_captions_combined_filtered.pkl
+http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/confidence_captions_combined_filtered-{version either v1 or v2}.pkl
 ```
 
 **Downloading video features, descriptions and train/val/test splits**\
