@@ -45,11 +45,11 @@ unzip json_metadata.zip
 Audio files can be downloaded only after downloading the .json metadata using the previous step.\
 To download the audio description files corresponding to each video, run:
 ```
-python download_queryd.py --txt_file relevant-video-links.txt --task download_wavs
+python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --task download_wavs
 ```
 To use more processes add the --processes flag with the number of CPUs available. eg:
 ```
-python download_queryd.py --txt_file relevant-video-links.txt --task download_wavs --processes 2
+python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --task download_wavs --processes 2
 ```
 
 **Downloading transcribed descriptions and corresponding time-stamps**\
