@@ -13,6 +13,8 @@ This is a tool to allow for easy download of the videos forming the QuerYD datas
 * json
 * zsvision
 
+## Version 2 of the dataset has been added on 8th of April
+
 **Downloading videos** \
 To test the download videos script for the QuerYD dataset simply run:
 ```
@@ -21,15 +23,15 @@ python download_queryd.py --txt_file relevant-video-links-test.txt --task downlo
 This will create a folder called videos in your current folder and videos will be saved there.
 To fully run the download_videos script run:
 ```
-python download_queryd.py --txt_file relevant-video-links.txt --task download_videos
+python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --task download_videos
 ```
 To attempt downloading videos multiple times, set the --tries flag to the desired value. By default the value is 2. Eg:
 ```
-python download_queryd.py --txt_file relevant-video-links.txt --tries 3 --task download_videos
+python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --tries 3 --task download_videos
 ```
 To re-download all files use the --refresh flag. Eg:
 ```
-python download_queryd.py --txt_file relevant-video-links.txt --refresh --task download_videos
+python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --refresh --task download_videos
 ```
 
 **Downloading json metadata** \
