@@ -69,11 +69,11 @@ http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/confi
 **Downloading video features, descriptions and train/val/test splits**\
 To download QuerYD data:
 ```
-wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYD-experts.tar.gz
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYD-experts-{version either v1 or v2}.tar.gz
 ```
 To download QuerYDSegments data (localised clips and their descriptions):
 ```
-wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYDSegments-experts.tar.gz
+wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYDSegments-experts-{version either v1 or v2}.tar.gz
 ```
 
 More info and scripts used can be found at https://github.com/albanie/collaborative-experts#queryd and training and test steps can be followed from https://github.com/albanie/collaborative-experts#evaluating-a-pretrained-model where MSVD should be replaced by QuerYD or QuerYDSegments. Model names should be taken from retrieval results tables at https://github.com/albanie/collaborative-experts#queryd or https://github.com/albanie/collaborative-experts#querydsegments .
