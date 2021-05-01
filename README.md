@@ -38,6 +38,7 @@ python download_queryd.py --txt_file relevant-video-links-{version either v1 or 
 To download the .json file containing information about the described videos run:
 ```
 wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/json_metadata-{version either v1 or v2}.zip
+json_metadata-{version either v1 or v2}.zip json_metadata.zip
 unzip json_metadata.zip
 ```
 
@@ -56,24 +57,29 @@ python download_queryd.py --txt_file relevant-video-links-{version either v1 or 
 The transcribed version of the audio descriptions can be downloaded as a pickle file by accessing the following link:
 ```
 http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/raw_captions_combined_filtered-{version either v1 or v2}.pkl
+mv raw_captions_combined_filtered-{version either v1 or v2}.pkl raw_captions_combined_filtered.pkl
 ```
 The corresponding time-stamps in the same order are provided in this pickle file:
 ```
 http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/times_captions_combined_filtered-{version either v1 or v2}.pkl
+mv times_captions_combined_filtered-{version either v1 or v2}.pkl times_captions_combined_filtered.pkl
 ```
 The confidence of the transcriptions in the same order as transcriptions are found here:
 ```
 http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/confidence_captions_combined_filtered-{version either v1 or v2}.pkl
+mv confidence_captions_combined_filtered-{version either v1 or v2}.pkl confidence_captions_combined_filtered.pkl
 ```
 
 **Downloading video features, descriptions and train/val/test splits**\
 To download QuerYD data:
 ```
 wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYD-experts-{version either v1 or v2}.tar.gz
+mv QuerYD-experts-{version either v1 or v2}.tar.gz QuerYD-experts.tar.gz
 ```
 To download QuerYDSegments data (localised clips and their descriptions):
 ```
 wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/features-v2/QuerYDSegments-experts-{version either v1 or v2}.tar.gz
+mv QuerYDSegments-experts-{version either v1 or v2}.tar.gz QuerYDSegments-experts.tar.gz
 ```
 
 More info and scripts used can be found at https://github.com/albanie/collaborative-experts#queryd and training and test steps can be followed from https://github.com/albanie/collaborative-experts#evaluating-a-pretrained-model where MSVD should be replaced by QuerYD or QuerYDSegments. Model names should be taken from retrieval results tables at https://github.com/albanie/collaborative-experts#queryd or https://github.com/albanie/collaborative-experts#querydsegments .
