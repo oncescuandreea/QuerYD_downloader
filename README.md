@@ -38,7 +38,7 @@ python download_queryd.py --txt_file relevant-video-links-{version either v1 or 
 To download the .json file containing information about the described videos run:
 ```
 wget http://www.robots.ox.ac.uk/~vgg/research/collaborative-experts/data/QuerYD/json_metadata-{version either v1 or v2}.zip
-json_metadata-{version either v1 or v2}.zip json_metadata.zip
+mv json_metadata-{version either v1 or v2}.zip json_metadata.zip
 unzip json_metadata.zip
 ```
 
