@@ -25,6 +25,10 @@ To fully run the download_videos script run:
 ```
 python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --task download_videos
 ```
+To only download videos with non-english descriptions run the download_videos script run:
+```
+python download_queryd.py --txt_file relevant-non-en-links.txt --task download_videos
+```
 To attempt downloading videos multiple times, set the --tries flag to the desired value. By default the value is 2. Eg:
 ```
 python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --tries 3 --task download_videos
@@ -47,6 +51,10 @@ Audio files can be downloaded only after downloading the .json metadata using th
 To download the audio description files corresponding to each video, run:
 ```
 python download_queryd.py --txt_file relevant-video-links-{version either v1 or v2}.txt --task download_wavs
+```
+To download only the non-english audio descriptions run:
+```
+python download_queryd.py --txt_file relevant-non-en-links.txt --task download_wavs
 ```
 To use more processes add the --processes flag with the number of CPUs available. eg:
 ```
