@@ -72,8 +72,9 @@ def download_one_video(tries: int,
         #     break
         except Exception as e:
             print(f"Video {video_id} encountered error {e}")
-            with open(failed_folder / f'{video_id}_{e}.txt', 'w') as f:
-                pass
+            with open(failed_folder / f'{video_id}.txt', 'w') as f:
+                f.write(e)
+                f.write('\n')
             break
 
 def download_videos(video_dir: Path,
