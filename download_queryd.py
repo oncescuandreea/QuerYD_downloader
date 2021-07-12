@@ -49,33 +49,33 @@ def download_one_video(tries: int,
                     pass
             no_tries += 1
             continue
-        # except KeyError:
-        #     #Windows error
-        #     print(f"Video {video_id} unavailable")
-        #     no_tries = tries + 1
-        #     with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
-        #         pass
-        # except VideoRegionBlocked:
-        #     print(f"Video {video_id} unavailable in your region")
-        #     with open(failed_folder / f'{video_id}_region.txt', 'w') as f:
-        #         pass
-        #     break
-        # except VideoUnavailable:
-        #     print(f"Video {video_id} unavailable")
-        #     with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
-        #         pass
-        #     break
-        # except VideoPrivate:
-        #     print(f"Video {video_id} private")
-        #     with open(failed_folder / f'{video_id}_private.txt', 'w') as f:
-        #         pass
-        #     break
+        except KeyError:
+            #Windows error
+            print(f"Video {video_id} unavailable")
+            no_tries = tries + 1
+            with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
+                pass
+        except VideoRegionBlocked:
+            print(f"Video {video_id} unavailable in your region")
+            with open(failed_folder / f'{video_id}_region.txt', 'w') as f:
+                pass
+            break
+        except VideoUnavailable:
+            print(f"Video {video_id} unavailable")
+            with open(failed_folder / f'{video_id}_unavailable.txt', 'w') as f:
+                pass
+            break
+        except VideoPrivate:
+            print(f"Video {video_id} private")
+            with open(failed_folder / f'{video_id}_private.txt', 'w') as f:
+                pass
+            break
         except Exception as e:
             print(f"Video {video_id} encountered error {e}")
             with open(failed_folder / f'{video_id}.txt', 'w') as f:
                 f.write(f"Video {video_id} encountered error {e}")
                 f.write('\n')
-            break
+            
 
 def download_videos(video_dir: Path,
                     txt_file: Path,
