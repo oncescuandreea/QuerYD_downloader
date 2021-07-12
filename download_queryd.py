@@ -73,7 +73,7 @@ def download_one_video(tries: int,
         except Exception as e:
             print(f"Video {video_id} encountered error {e}")
             with open(failed_folder / f'{video_id}.txt', 'w') as f:
-                f.write(e)
+                f.write(f"Video {video_id} encountered error {e}")
                 f.write('\n')
             break
 
