@@ -247,6 +247,11 @@ def main():
     logging.basicConfig(filename=f"logs/{datetime.now().strftime(r'%m%d_%H%M%S')}.log",
                         level=logging.INFO)
     logging.getLogger().addHandler(logging.StreamHandler())
+    if args.processes > 10:
+        raise ValueError("Using more than 10 processes might cause issues with YouTube which might lead to\
+            impossibility of downloading data in the future. If you still want to continue, comment out\
+            the if statement found in line 250 of the main download_queryd.py script")
+        
     if args.task in "download_videos":
         download_videos(args.video_dir, args.txt_file,
                         args.tries, args.refresh,
