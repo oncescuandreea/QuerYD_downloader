@@ -190,6 +190,10 @@ def fetch_wav_worker(
     api_wav_endpoint: str,
     refresh: bool,
 ):
+    headers = {
+    'User-Agent': 'Mozilla/5.0',
+    'Referer': 'https://youdescribe.org/'
+    }
     if wav_parent == "legacy":
         full_url = f"{api_wav_endpoint}/{wav_parent}/{wav_file}"
     else:
@@ -199,7 +203,7 @@ def fetch_wav_worker(
     if dest_path.exists() and not refresh:
         print(f"Found existing result at {dest_path}, skipping...")
         return
-    resp = requests.get(full_url, verify=False)
+    resp = requests.get(full_url, headers=headers, verify=False)
     print(f"Fetching {full_url} -> {dest_path} [{resp.status_code}]")
     if resp.status_code == 200 and "not found" not in resp.text:
         with open(dest_path, "wb") as f:
